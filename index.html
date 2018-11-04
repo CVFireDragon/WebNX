@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<title>WebNX - Payload Injector</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+textarea {width:100%;}
+.wnx {background-color:#414548;}
+</style>
+
+<body>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="showcase">
+    <h1 class="w3-xxlarge"><b>WebNX - Payload Injector</b></h1>
+    <hr style="width:50px;border:3px solid grey" class="w3-round">
+          <form id="mainForm">
+        <p>
+          <input class="w3-radio" type="radio" name="payload" id="fusee.bin" value="fusee.bin">
+          <label for="fusee.bin">Example Payload (fusee.bin)</label>
+        </p>
+		<p>
+          <input class="w3-radio" type="radio" name="payload" id="hekate_ctcaer_4.2.bin" value="hekate_ctcaer_4.2.bin" checked>
+          <label for="hekate_ctcaer_4.2.bin">Latest hekate (<a href="https://github.com/CTCaer/hekate/releases">v4.2</a>) </label>
+        </p>
+        <p>
+          <input class="w3-radio" type="radio" name="payload" id="uploaded" value="uploaded" checked>
+          <label for="uploaded">Upload Payload:</label>
+          <input type="file" id="payloadUpload">
+        </p>
+      </form>
+
+      <button id="goButton" class="w3-button w3-block w3-padding-large wnx w3-margin-bottom w3-text-white">Inject!</button>
+ 
+	<div id="results">
+    <h3>Result:</h3>
+    <textarea id="output" cols="80" rows="12" id="output"></textarea>
+	</div>
+
+    <script src="./main.js"></script>
+  </div>
+  
+  <!-- Services -->
+  <div class="w3-container" id="instructions" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-blue-grey"><b>Usage:</b></h1>
+    <hr style="width:50px;border:3px solid grey" class="w3-round">
+    <p>
+      <ol>
+        <li>Put the Switch in RCM and connect it to your device.</li>
+        <li>Select or Upload a Payload</li>
+        <li>Press 'Inject!'</li>
+        <li>On the consent screen that appears, select 'APX' and hit confirm. If APX does not appear, ensure your device is in RCM and connected.</li>
+        <li>If all goes well, the Payload will launch!</li>
+      </ol>
+    </p>
+  </div>
+  
+  <!-- Designers -->
+  <div class="w3-container" id="additional" style="margin-top:75px">
+  <h1 class="w3-xxxlarge w3-text-blue-grey"><b>Extra Info:</b></h1>
+  <hr style="width:50px;border:3px solid grey" class="w3-round">
+    <p>
+      <ul>
+        <li>This does NOT work on Windows due to a limitation in the Chrome implementation of WebUSB (and probably other reasons!) On Windows, you can use <a href="https://switchtools.sshnuke.net">TegraRcmSmash</a></li>
+        <li>This does NOT currently work on any browser but Chrome, because they don't implement WebUSB.</li>
+        <li>On Linux, you might get an access denied error!
+          If you do, you can try creating a file at <code>/etc/udev/rules.d/50-switch.rules</code>
+          <div>With the following contents:</div>
+          <div><code>SUBSYSTEM=="usb", ATTR{idVendor}=="0955", MODE="0664", GROUP="plugdev"</code></div>
+        </li>
+        <li>This has been tested and appears to work on Linux, macOS, Android (unrooted) and Chromebooks.</li>
+      </ul>
+    </p>
+
+  </div>
+    </p>
+  </div>
+<!-- End page content -->
+</div>
+</body>
+</html>
